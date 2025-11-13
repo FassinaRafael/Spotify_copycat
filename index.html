@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Modern Music Player</title>
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
@@ -11,33 +11,32 @@
     />
   </head>
   <body>
-    <article>
-      <h4>Playlist</h4>
-      <img alt="disc cover" />
+    <article class="music-player">
+      <h4 class="playlist-title">Playlist Player</h4>
+      <img alt="Disc cover" class="cover-image" />
       <audio id="audio"></audio>
-      <div class="below-cover">
-        <section class="song-info">
-          <p id="song-name">Nome da música</p>
-          <p id="band-name">Nome da banda</p>
-        </section>
 
-        <button><i class="bi bi-heart"></i></button>
+      <div class="song-info">
+        <p id="song-name">Nome da Música</p>
+        <p id="band-name">Nome da Banda</p>
       </div>
-      <div class="progresso">
-        <p></p>
+      
+      <button class="favorite-button"><i class="bi bi-heart"></i></button>
+
+      <div class="progress-container">
+        <p id="current-time">0:00</p>
+        <div class="progresso">
+          <p class="progress-bar"></p>
+        </div>
+        <p id="song-duration">0:00</p>
       </div>
 
       <div class="button-container">
-        <button><i class="bi bi-shuffle"></i></button>
-        <!-- Ordem aleatória -->
+        <button id="shuffle"><i class="bi bi-shuffle"></i></button> 
         <button id="previous"><i class="bi bi-skip-start-fill"></i></button>
-        <!-- Voltar música -->
         <button id="play"><i class="bi bi-play-circle-fill"></i></button>
-        <!-- Play -->
         <button id="next"><i class="bi bi-skip-end-fill"></i></button>
-        <!-- Pular música -->
-        <button><i class="bi bi-repeat"></i></button>
-        <!-- Repetir música -->
+        <button id="repeat"><i class="bi bi-repeat"></i></button>
       </div>
     </article>
     <script src="script.js"></script>
