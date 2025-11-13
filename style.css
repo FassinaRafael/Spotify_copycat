@@ -1,80 +1,181 @@
+:root {
+    --primary-color: #1DB954; /* Verde Spotify/Ativo */
+    --secondary-color: #282828; /* Fundo Secundário */
+    --text-light: #ffffff;
+    --text-muted: #b3b3b3;
+}
+
 body {
-    background-image: linear-gradient(
-        #3B585D,
-        #1d282a
-    );
-    color: aliceblue;
-    height: 100vh;
-    font-family: sans-serif;
+    background: linear-gradient(135deg, #121212, #000000); /* Fundo Escuro Moderno */
+    color: var(--text-light);
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 0 0 0;
+    justify-content: center;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
 }   
 
+/* Estilo do Container do Player */
+.music-player {
+    background-color: var(--secondary-color);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 450px;
+}
+
+/* Título */
+.playlist-title {
+    font-size: 1.1em;
+    font-weight: 300;
+    margin-bottom: 30px;
+    color: var(--text-muted);
+}
+
+/* Capa do Álbum */
+.cover-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin-bottom: 25px;
+    transition: transform 0.3s ease;
+}
+.cover-image:hover {
+    transform: scale(1.02);
+}
+
+/* Informações da Música */
+.song-info {
+    text-align: center;
+    margin-bottom: 15px;
+}
+.song-info p:first-of-type {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin: 0;
+}
+#band-name {
+    font-size: 1em;
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+/* Botão Favorito */
+.favorite-button {
+    font-size: 1.5em;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    transition: color 0.2s;
+}
+.favorite-button:hover {
+    color: var(--primary-color);
+}
+
+/* Botões Gerais */
 button {
     background-color: inherit;
     color: inherit;
     border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s, transform 0.1s;
+}
+button:active {
+    transform: scale(0.95);
 }
 
-.below-cover {
+/* Container de Progresso (Tempo e Barra) */
+.progress-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    margin: 2.5em 0 1em 0;
+    width: 100%;
+    gap: 10px;
+    margin: 15px 0;
 }
-.below-cover p:last-of-type{
-    color: #8B999C;
+#current-time, #song-duration {
+    font-size: 0.8em;
+    color: var(--text-muted);
+    width: 40px; /* Garante que o tempo não empurre a barra */
+    text-align: center;
 }
 
-.below-cover button:last-of-type{
-    font-size: 1.2em;
-    color: #8B999C; 
-    margin: 0 0 1em 0;
+/* Barra de Progresso */
+.progresso {
+    background-color: #404040; /* Fundo da barra */
+    height: 6px;
+    flex-grow: 1; /* Ocupa o espaço restante */
+    border-radius: 15px;
+    cursor: pointer;
 }
+.progress-bar {
+    background-color: var(--text-light); /* Cor do preenchimento */
+    height: inherit;
+    width: 0%; /* Inicializado em 0% pelo JS */
+    border-radius: inherit;
+    margin: 0;
+    transition: background-color 0.2s;
+}
+.progresso:hover .progress-bar {
+    background-color: var(--primary-color); /* Efeito hover na barra */
+}
+
+
+/* Container de Controles (Shuffle, Play/Pause, etc.) */
 .button-container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    margin: 1.5em 0 0 0;
+    width: 80%;
+    margin-top: 20px;
 }
-.button-container button{
+.button-container button {
     font-size: 1.5em;
+    color: var(--text-muted);
 }
-.button-container button:nth-of-type(even){
-    font-size: 3em;
+.button-container button:hover {
+    color: var(--text-light);
 }
-.button-container button:nth-of-type(3){
-    font-size: 4em;
+
+/* Estilo do botão Play/Pause */
+#play {
+    font-size: 4em !important;
+    color: var(--text-light);
 }
-body img {
-    width: 450px;
+#play:hover {
+    color: var(--primary-color);
 }
-h4 {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 1em 0 4em 0;
+
+/* Estilo para botões ativos (Shuffle, Repeat) */
+.button-container button.active {
+    color: var(--primary-color);
 }
-.song-info p:first-of-type{
-    font-size: 2em;
-    font-weight: bolder;
-}
-section p:first-of-type{
-    margin: 0;
-}
-.progresso {
-    background-color: #8B999C;
-    height: 3px;
-    width: 100%;
-    border-radius: 15px;
-}
-.progresso p {
-    background-color: white;
-    height: inherit;
-    width: 50%;
-    border-radius: inherit;
+
+/* Media Query para Responsividade */
+@media (max-width: 500px) {
+    .music-player {
+        padding: 20px;
+    }
+    .cover-image {
+        max-width: 80%;
+    }
+    .song-info p:first-of-type {
+        font-size: 1.5em;
+    }
+    .button-container button {
+        font-size: 1.2em;
+    }
+    #play {
+        font-size: 3em !important;
+    }
 }
